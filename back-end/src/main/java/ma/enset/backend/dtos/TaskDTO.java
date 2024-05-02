@@ -20,6 +20,6 @@ public class TaskDTO {
     private Date estimatedEndDate;
     private Date EndDate;
     private TaskAvancement taskAvancement;
-    private Employee employee;
-    private Project project;
+    private String employeeName;
+    private String projectName;
 }

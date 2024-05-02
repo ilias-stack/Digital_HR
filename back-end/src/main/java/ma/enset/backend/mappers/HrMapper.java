@@ -52,6 +52,8 @@ public class HrMapper {
     public TaskDTO fromTask(Task task){
         TaskDTO taskDTO = new TaskDTO();
         BeanUtils.copyProperties(task, taskDTO);
+        taskDTO.setProjectName(task.getProject().getTitle());
+        taskDTO.setEmployeeName(task.getEmployee().getEmployeeName());
         return taskDTO;
     }
 

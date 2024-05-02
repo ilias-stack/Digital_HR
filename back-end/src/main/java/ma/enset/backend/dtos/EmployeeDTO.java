@@ -16,7 +16,7 @@ import java.util.List;
 public class EmployeeDTO {
     private String employeeName;
     private String email;
-    private int employeeNumber;
+    private Long employeeNumber;
     private String state;
     private Date dob;
     private int age;
