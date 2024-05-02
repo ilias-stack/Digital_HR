@@ -1,4 +1,4 @@
-package ord.sid.backend.entities;
+package ma.enset.backend.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,13 +13,12 @@ import java.util.List;
 @NoArgsConstructor@AllArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String Tel;
-    @OneToMany(mappedBy = "customer")
-   private List<Projet> projetList;
+    private String name;
+    private String industry;
+    private double revenue;
+    private double estimatedRevenue;
+    @OneToMany
+    private List<Project> projects;
 
 }

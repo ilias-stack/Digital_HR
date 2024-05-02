@@ -1,4 +1,4 @@
-package ord.sid.backend;
+package ma.enset.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

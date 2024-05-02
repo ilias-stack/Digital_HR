@@ -1,6 +1,6 @@
-package ord.sid.backend.repositories;
+package ma.enset.backend.repositories;
 
-import ord.sid.backend.entities.Customer;
+import ma.enset.backend.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerRepo extends JpaRepository<Customer,Long> {
