@@ -14,7 +14,7 @@ public class Employee {
     private String employeeName;
     private String email;
     @Id
-    private Long employeeNumber;
+    private Long ID;
     private String state;
     private String zip;
     private Date dob;
