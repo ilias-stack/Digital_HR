@@ -26,7 +26,9 @@ public interface DigitalHRService {
 
     List<TaskDTO> taskListByProject(Long idProject);
 
-    ProjectDTO addProject(ProjectDTO projectDTO);
+
+
+    ProjectDTO addProject(ProjectDTO projectDTO, Long idCustomer, List<Employee> employees, List<Task> tasks);
 
     List<CustomerDTO> searchCustomers(String s);
 

@@ -9,6 +9,7 @@ import ma.enset.backend.entities.Customer;
 import ma.enset.backend.entities.Employee;
 import ma.enset.backend.entities.Project;
 import ma.enset.backend.entities.Task;
+import ma.enset.backend.exceptions.CustomerNotFoundException;
 import ma.enset.backend.exceptions.EmployeeNotFoundException;
 import ma.enset.backend.exceptions.ProjectNotFoundException;
 import ma.enset.backend.mappers.HrMapper;
@@ -95,9 +96,13 @@ public class DigitalHRServiceImpl implements DigitalHRService{
 
     }
     @Override
-    public ProjectDTO addProject(ProjectDTO projectDTO){
+    public ProjectDTO addProject(ProjectDTO projectDTO,Long idCustomer,List<Employee> employees,List<Task> tasks){
+        Customer customer = customerRepo.findById(idCustomer).orElseThrow(()->new CustomerNotFoundException("Customer not found"));
 
         Project project= dtoMapper.fromProjectDTO(projectDTO);
+        project.setCustomer(customer);
+        project.setEmployees(employees);
+        project.setTasks(tasks);
         Project saveProject =projectRepo.save(project);
         return dtoMapper.fromProject(saveProject);
 
