@@ -12,11 +12,13 @@ import ma.enset.backend.entities.Task;
 import ma.enset.backend.exceptions.CustomerNotFoundException;
 import ma.enset.backend.exceptions.EmployeeNotFoundException;
 import ma.enset.backend.exceptions.ProjectNotFoundException;
+import ma.enset.backend.exceptions.TaskNotFoundException;
 import ma.enset.backend.mappers.HrMapper;
 import ma.enset.backend.repositories.CustomerRepo;
 import ma.enset.backend.repositories.EmployeeRepo;
 import ma.enset.backend.repositories.ProjectRepo;
 import ma.enset.backend.repositories.TaskRepo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -143,4 +145,71 @@ public class DigitalHRServiceImpl implements DigitalHRService{
     public List<ProjectDTO> getAllProjects() {
         return projectRepo.findAll().stream().map(project -> dtoMapper.fromProject(project)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<CustomerDTO> getAllCustomers(){
+        return customerRepo.findAll().stream().map(customer -> dtoMapper.fromCustomer(customer)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EmployeeDTO> getEmployeesByProject(Long projectId){
+        return employeeRepo.findEmployeesByProjectId(projectId).stream().map(employee -> dtoMapper.fromEmployee(employee)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TaskDTO> getTasksByEmployee(Long employeeId){
+        return taskRepo.findByEmployeeID(employeeId).stream().map(task -> dtoMapper.fromTask(task)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateProject(Long projectId, ProjectDTO projectDTO){
+        Project existingProject = projectRepo.findById(projectId).orElseThrow(() -> new ProjectNotFoundException("Employee not found with id: " + projectId));
+        BeanUtils.copyProperties(existingProject,projectDTO,"id");
+        projectRepo.save(existingProject);
+    }
+
+    @Override
+    public void updateEmployee(Long employeeId, EmployeeDTO employeeDTO) {
+        Employee existingEmployee = employeeRepo.findById(employeeId)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + employeeId));
+        BeanUtils.copyProperties(employeeDTO, existingEmployee,"ID");
+        employeeRepo.save(existingEmployee);
+    }
+
+    @Override
+    public void updateTask(Long taskId, TaskDTO taskDTO) {
+        Task existingTask = taskRepo.findById(taskId)
+                .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + taskId));
+        BeanUtils.copyProperties(taskDTO, existingTask,"id" );
+        taskRepo.save(existingTask);
+    }
+
+    @Override
+    public void updateCustomer(Long customerId, CustomerDTO customerDTO) {
+        Customer existingCustomer = customerRepo.findById(customerId)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id: " + customerId));
+        BeanUtils.copyProperties(customerDTO, existingCustomer, "id");
+        customerRepo.save(existingCustomer);
+    }
+
+    @Override
+    public void deleteProject(Long projectId){
+        projectRepo.deleteById(projectId);
+    }
+
+    @Override
+    public void deleteEmployee(Long employeeId) {
+        employeeRepo.deleteById(employeeId);
+    }
+
+    @Override
+    public void deleteTask(Long taskId) {
+        taskRepo.deleteById(taskId);
+    }
+
+    @Override
+    public void deleteCustomer(Long customerId) {
+        customerRepo.deleteById(customerId);
+    }
+
 }

@@ -28,4 +28,26 @@ public interface DigitalHRService {
     EmployeeDTO saveEmployee(EmployeeDTO employeeDTO);
 
     List<ProjectDTO> getAllProjects();
+
+    List<CustomerDTO> getAllCustomers();
+
+    List<EmployeeDTO> getEmployeesByProject(Long projectId);
+
+    List<TaskDTO> getTasksByEmployee(Long employeeId);
+
+    void updateProject(Long projectId, ProjectDTO projectDTO);
+
+    void updateEmployee(Long employeeId, EmployeeDTO employeeDTO);
+
+    void updateTask(Long taskId, TaskDTO taskDTO);
+
+    void updateCustomer(Long customerId, CustomerDTO customerDTO);
+
+    void deleteProject(Long projectId);
+
+    void deleteEmployee(Long employeeId);
+
+    void deleteTask(Long taskId);
+
+    void deleteCustomer(Long customerId);
 }

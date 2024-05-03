@@ -36,4 +36,6 @@ public class Employee {
     private String performanceScore;
     @ManyToMany
     private List<Project> projects;
+    @OneToMany
+    private List<Task> tasks;
 }
