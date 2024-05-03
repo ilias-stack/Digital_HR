@@ -15,26 +15,17 @@ public interface DigitalHRService {
     void addEmployeeToProject(Long employeeId,Long projectId);
     void addTaskToProject(TaskDTO taskDTO, Long projectId,Long employeeId);
     void removeEmployeeFromProject(Long employeeId,Long projectId);
-
-
-
-    List<ProjectDTO> listProjectsByEmployees(List<Employee> employees
-    );
-
-
-    List<ProjectDTO> listProjectsByEmploye(Long employeeId);
-
+    List<ProjectDTO> listProjectsByEmployees(List<Employee> employees);
+    List<ProjectDTO> listProjectsByEmployee(Long employeeId);
     List<TaskDTO> taskListByProject(Long idProject);
-
-
-
-    ProjectDTO addProject(ProjectDTO projectDTO, Long idCustomer, List<Employee> employees, List<Task> tasks);
-
+    ProjectDTO addProject(ProjectDTO projectDTO, Long idCustomer, List<Long> employees);
     List<CustomerDTO> searchCustomers(String s);
-
     List<ProjectDTO> searchProjects(String s);
-
     List<EmployeeDTO> searchEmployee(String s);
-
     List<TaskDTO> searchTask(String s);
+    EmployeeDTO getEmployeeById(Long id);
+
+    EmployeeDTO saveEmployee(EmployeeDTO employeeDTO);
+
+    List<ProjectDTO> getAllProjects();
 }

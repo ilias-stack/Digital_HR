@@ -83,7 +83,7 @@ public class DigitalHRServiceImpl implements DigitalHRService{
 
 
     @Override
-    public List<ProjectDTO> listProjectsByEmploye(Long employeeId){
+    public List<ProjectDTO> listProjectsByEmployee(Long employeeId){
         List<Employee> list = new ArrayList<>();
         Employee employee=employeeRepo.findEmployeeByID(employeeId);
         list.add(employee);
@@ -96,13 +96,12 @@ public class DigitalHRServiceImpl implements DigitalHRService{
 
     }
     @Override
-    public ProjectDTO addProject(ProjectDTO projectDTO,Long idCustomer,List<Employee> employees,List<Task> tasks){
+    public ProjectDTO addProject(ProjectDTO projectDTO,Long idCustomer,List<Long> employees){
         Customer customer = customerRepo.findById(idCustomer).orElseThrow(()->new CustomerNotFoundException("Customer not found"));
-
         Project project= dtoMapper.fromProjectDTO(projectDTO);
+        List<Employee> employeeList = employeeRepo.findEmployeesByIDIn(employees);
         project.setCustomer(customer);
-        project.setEmployees(employees);
-        project.setTasks(tasks);
+        project.setEmployees(employeeList);
         Project saveProject =projectRepo.save(project);
         return dtoMapper.fromProject(saveProject);
 
@@ -128,5 +127,20 @@ public class DigitalHRServiceImpl implements DigitalHRService{
         List<Task> tasks=taskRepo.searchTask(s);
         return tasks.stream().map(ts -> dtoMapper.fromTask(ts)).collect(Collectors.toList());
     }
-    // --
+
+    @Override
+    public EmployeeDTO getEmployeeById(Long id) {
+        return dtoMapper.fromEmployee(employeeRepo.findById(id).orElseThrow(()->new EmployeeNotFoundException("Employee not found")));
+    }
+
+    @Override
+    public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = employeeRepo.save(dtoMapper.fromEmployeeDTO(employeeDTO));
+        return dtoMapper.fromEmployee(employee);
+    }
+
+    @Override
+    public List<ProjectDTO> getAllProjects() {
+        return projectRepo.findAll().stream().map(project -> dtoMapper.fromProject(project)).collect(Collectors.toList());
+    }
 }

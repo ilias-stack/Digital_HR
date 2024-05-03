@@ -13,4 +13,5 @@ public interface EmployeeRepo extends JpaRepository<Employee,Long> {
 Employee findEmployeeByID(Long ID);
     @Query("select c from Employee c where c.employeeName like :kw")
     List<Employee> searchEmployee(@Param("kw") String keyword);
+    List<Employee> findEmployeesByIDIn(List<Long> ids);
 }

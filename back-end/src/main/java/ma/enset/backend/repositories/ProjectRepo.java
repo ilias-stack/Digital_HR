@@ -15,5 +15,4 @@ public interface ProjectRepo extends JpaRepository<Project,Long> {
  List<Project> findProjectsByEmployees(List<Employee> employees);
  @Query("select c from Project c where c.title like :kw")
  List<Project> searchProject(@Param("kw") String keyword);
-
 }
