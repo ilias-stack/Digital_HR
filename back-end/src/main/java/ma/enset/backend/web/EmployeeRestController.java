@@ -49,4 +49,16 @@ public class EmployeeRestController {
     public List<EmployeeDTO> searchEmployee(@PathParam("query") String s) {
         return digitalHRService.searchEmployee(s);
     }
+    @GetMapping("/employees/{employeeId}/tasks")
+    public List<TaskDTO> getTasksByEmployee(@PathVariable Long employeeId){
+        return digitalHRService.getTasksByEmployee(employeeId);
+    }
+    @PutMapping("/employees/{employeeId}")
+    public void updateEmployee(@PathVariable Long employeeId,@RequestBody EmployeeDTO employeeDTO){
+        digitalHRService.updateEmployee(employeeId,employeeDTO);
+    }
+    @DeleteMapping("/employees/{employeeId}")
+    public void deleteEmployee(@PathVariable Long employeeId) {
+        digitalHRService.deleteEmployee(employeeId);
+    }
 }
