@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CustomerRestController {
     private DigitalHRService digitalHRService;
-    @GetMapping("/customers")
+    @GetMapping("/customers/search")
     public List<CustomerDTO> searchCustomers(@PathParam("query") String s) {
         return digitalHRService.searchCustomers(s);
     }

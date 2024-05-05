@@ -17,12 +17,28 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Random;
+import java.util.stream.Stream;
+
 @SpringBootApplication
 @AllArgsConstructor
 public class BackEndApplication {
     private DigitalHRService digitalHRService;
     public static void main(String[] args) {
         SpringApplication.run(BackEndApplication.class, args);
+    }
+    @Bean
+    CommandLineRunner start(){
+        return args -> {
+            Stream.of("hamid","soulaymane","lfassi lostora","zaazaa").forEach(name->{
+                EmployeeDTO employeeDTO = new EmployeeDTO();
+                employeeDTO.setID((long)(Math.random()*1000));
+                employeeDTO.setAge((int)(Math.random()*60));
+                employeeDTO.setEmployeeName(name);
+                employeeDTO.setEmail(name+"@email.com");
+                digitalHRService.saveEmployee(employeeDTO);
+            });
+        };
     }
 
 }

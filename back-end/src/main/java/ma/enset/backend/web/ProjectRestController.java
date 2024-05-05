@@ -28,7 +28,7 @@ public class ProjectRestController {
                                  @RequestParam List<Long> employeeIds) {
         return digitalHRService.addProject(projectDTO, idCustomer, employeeIds);
     }
-    @GetMapping("/projects")
+    @GetMapping("/projects/search")
     public List<ProjectDTO> searchProjects(@RequestParam String s) {
         return digitalHRService.searchProjects(s);
     }
