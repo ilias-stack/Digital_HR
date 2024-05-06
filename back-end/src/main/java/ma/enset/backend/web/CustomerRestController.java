@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+
 public class CustomerRestController {
     private DigitalHRService digitalHRService;
     @GetMapping("/customers/search")

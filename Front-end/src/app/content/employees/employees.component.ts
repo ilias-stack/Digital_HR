@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmployeesService} from "../../services/employees.service";
-import {data} from "autoprefixer";
-import {Employe} from "../../models/employe.model";
+import {Employee} from "../../models/employee.model";
 
 @Component({
   selector: 'app-employees',
@@ -10,18 +9,16 @@ import {Employe} from "../../models/employe.model";
 })
 export class EmployeesComponent implements OnInit{
   employees:any;
-  data:Employe = {employeeName:"soulaimane",email:"soulaimane",employeeNumber:10,performanceScore:10};
   errorMessage!:string;
-  constructor(private employeService:EmployeesService) {
+  constructor(private employeeService:EmployeesService) {
   }
 
     ngOnInit(): void {
-      this.employeService.getEmployees().subscribe({
+      this.employeeService.getEmployees().subscribe({
         next : (value) => {
 
           this.employees=value;
-          this.employees=this.data;
-          console.table(value);
+          console.log(value);
 
         },
         error : err => {

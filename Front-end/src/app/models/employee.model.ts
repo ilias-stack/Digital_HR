@@ -1,6 +1,6 @@
-export interface Employe{
+export interface Employee{
    employeeName: string;
    email:string;
- employeeNumber:number;
+   employeeNumber:number;
    performanceScore:number;
 }

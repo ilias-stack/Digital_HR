@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("*")
 public class EmployeeRestController {
     private final DigitalHRService digitalHRService;
 
