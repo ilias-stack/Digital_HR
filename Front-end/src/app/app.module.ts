@@ -7,13 +7,17 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { EmployeesComponent } from './content/employees/employees.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { ProjectsComponent } from './content/projects/projects.component';
+import { CustomersComponent } from './content/customers/customers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    ProjectsComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,
