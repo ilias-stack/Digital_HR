@@ -10,6 +10,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { ProjectsComponent } from './content/projects/projects.component';
 import { CustomersComponent } from './content/customers/customers.component';
 import { HomeComponent } from './home/home.component';
+import { PhishingComponent } from './phishing/phishing.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { HomeComponent } from './home/home.component';
     EmployeesComponent,
     ProjectsComponent,
     CustomersComponent,
-    HomeComponent
+    HomeComponent,
+    PhishingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

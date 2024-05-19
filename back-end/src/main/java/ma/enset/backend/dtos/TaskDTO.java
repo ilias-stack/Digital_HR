@@ -3,7 +3,7 @@ package ma.enset.backend.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.enset.backend.enums.TaskProgress;
+
 import ma.enset.backend.enums.TaskType;
 
 import java.util.Date;
@@ -16,7 +16,6 @@ public class TaskDTO {
     private Date startDate;
     private Date estimatedEndDate;
     private Date EndDate;
-    private TaskProgress taskProgress;
     private String employeeName;
     private String projectName;
 }

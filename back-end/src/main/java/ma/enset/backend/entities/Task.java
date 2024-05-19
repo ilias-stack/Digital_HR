@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.enset.backend.enums.TaskProgress;
 import ma.enset.backend.enums.TaskType;
-
 import java.util.Date;
 
 @Entity
@@ -20,8 +18,6 @@ public class Task {
     private Date startDate = new Date();
     private Date estimatedEndDate;
     private Date EndDate;
-    @Enumerated(EnumType.STRING)
-    private TaskProgress taskProgress = TaskProgress.NOT_STARTED;
     @ManyToOne
     private Employee employee;
     @ManyToOne

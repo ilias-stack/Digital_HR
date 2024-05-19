@@ -18,7 +18,6 @@ public class EmployeeDTO {
     private Date dateOfHire;
     private Date dateOfTermination;
     private String reasonForTerm;
-    private EmploymentStatus employmentStatus;
     private String department;
     private String position;
     private double payRate;

@@ -16,16 +16,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
 @SpringBootApplication
 @AllArgsConstructor
 public class BackEndApplication {
-    private DigitalHRService digitalHRService;
     public static void main(String[] args) {
         SpringApplication.run(BackEndApplication.class, args);
+    }
+    @Bean
+    public RestTemplate restTemplate(List<HttpMessageConverter<?>> messageConverters) {
+        RestTemplate restTemplate = new RestTemplate(messageConverters);
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        return restTemplate;
     }
 
 }

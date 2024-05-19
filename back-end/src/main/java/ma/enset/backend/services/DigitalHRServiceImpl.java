@@ -1,10 +1,8 @@
 package ma.enset.backend.services;
 
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
-import ma.enset.backend.dtos.CustomerDTO;
-import ma.enset.backend.dtos.EmployeeDTO;
-import ma.enset.backend.dtos.ProjectDTO;
-import ma.enset.backend.dtos.TaskDTO;
+import ma.enset.backend.dtos.*;
 import ma.enset.backend.entities.Customer;
 import ma.enset.backend.entities.Employee;
 import ma.enset.backend.entities.Project;
@@ -19,10 +17,15 @@ import ma.enset.backend.repositories.EmployeeRepo;
 import ma.enset.backend.repositories.ProjectRepo;
 import ma.enset.backend.repositories.TaskRepo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +38,7 @@ public class DigitalHRServiceImpl implements DigitalHRService{
     private TaskRepo taskRepo;
     private CustomerRepo customerRepo;
     private HrMapper dtoMapper;
+    private RestTemplate restTemplate;
 
     @Override
     public List<EmployeeDTO> getAllEmployee() {
@@ -210,6 +214,25 @@ public class DigitalHRServiceImpl implements DigitalHRService{
     @Override
     public void deleteCustomer(Long customerId) {
         customerRepo.deleteById(customerId);
+    }
+
+    @Override
+    public String scanUrl(String url) {
+        String flaskUrl = "http://localhost:5000/api/process-url?url=" + url;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        headers.add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+
+        HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                flaskUrl,
+                HttpMethod.GET,
+                entity,
+                new ParameterizedTypeReference<String>() {}
+        );
+
+        return response.getBody();
     }
 
 }

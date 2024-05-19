@@ -1,9 +1,6 @@
 package ma.enset.backend.services;
 
-import ma.enset.backend.dtos.CustomerDTO;
-import ma.enset.backend.dtos.EmployeeDTO;
-import ma.enset.backend.dtos.ProjectDTO;
-import ma.enset.backend.dtos.TaskDTO;
+import ma.enset.backend.dtos.*;
 import ma.enset.backend.entities.Employee;
 import ma.enset.backend.entities.Project;
 import ma.enset.backend.entities.Task;
@@ -50,4 +47,6 @@ public interface DigitalHRService {
     void deleteTask(Long taskId);
 
     void deleteCustomer(Long customerId);
+
+    String scanUrl(String url);
 }
