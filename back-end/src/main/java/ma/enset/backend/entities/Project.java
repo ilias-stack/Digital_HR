@@ -16,16 +16,17 @@ public class Project {
     private Long id;
     private String title;
     private String Description;
-    private Date startDate;
+    private Date startDate = new Date();
     private Date estimatedEndDate;
-    private ProjectStatus projectStatus;
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus projectStatus = ProjectStatus.CREATED;
     private Date endDate;
     private double estimatedRevenue;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Customer customer;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Employee> employees;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;
     private Double customerRating;
 }

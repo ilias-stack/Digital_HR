@@ -18,7 +18,7 @@ public class Customer {
     private String industry;
     private double revenue;
     private double estimatedRevenue;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Project> projects;
 
 }
