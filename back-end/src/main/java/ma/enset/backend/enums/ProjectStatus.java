@@ -1,5 +1,5 @@
 package ma.enset.backend.enums;
 
 public enum ProjectStatus {
-    CREATED,SUSPENDED,FINISHED,ACTIVATED
+    CREATED,STARTED,ON_HOLD,FINISHED
 }

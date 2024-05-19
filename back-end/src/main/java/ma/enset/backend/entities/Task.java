@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.enset.backend.enums.TaskAvancement;
+import ma.enset.backend.enums.TaskProgress;
 import ma.enset.backend.enums.TaskType;
 
 import java.util.Date;
@@ -14,12 +14,14 @@ import java.util.Date;
 public class Task {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private TaskType taskType;
+    @Enumerated(EnumType.STRING)
+    private TaskType taskType = TaskType.DEVELOPMENT;
     private String Description;
-    private Date startDate;
+    private Date startDate = new Date();
     private Date estimatedEndDate;
     private Date EndDate;
-    private TaskAvancement taskAvancement;
+    @Enumerated(EnumType.STRING)
+    private TaskProgress taskProgress = TaskProgress.NOT_STARTED;
     @ManyToOne
     private Employee employee;
     @ManyToOne

@@ -1,16 +1,11 @@
 package ma.enset.backend.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.enset.backend.entities.Project;
-import ma.enset.backend.enums.EmployementStatus;
+import ma.enset.backend.enums.EmploymentStatus;
 
 import java.util.Date;
-import java.util.List;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class EmployeeDTO {
@@ -23,7 +18,7 @@ public class EmployeeDTO {
     private Date dateOfHire;
     private Date dateOfTermination;
     private String reasonForTerm;
-    private EmployementStatus employmentStatus;
+    private EmploymentStatus employmentStatus;
     private String department;
     private String position;
     private double payRate;
