@@ -10,6 +10,8 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("*")
+
 public class TaskRestController {
     private DigitalHRService digitalHRService;
     @GetMapping("/tasks/search")

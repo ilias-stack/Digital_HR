@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-
+@CrossOrigin("*")
 public class CustomerRestController {
     private DigitalHRService digitalHRService;
     @GetMapping("/customers/search")
