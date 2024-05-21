@@ -6,13 +6,16 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { EmployeesComponent } from './content/employees/employees.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProjectsComponent } from './content/projects/projects.component';
 import { CustomersComponent } from './content/customers/customers.component';
 import { HomeComponent } from './home/home.component';
 import { PhishingComponent } from './phishing/phishing.component';
-import {ReactiveFormsModule} from "@angular/forms";
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './content/dashboard/dashboard.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { BarChartComponent } from './template/visuals/bar-chart/bar-chart.component';
+import { GantChartComponent } from './template/visuals/gant-chart/gant-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,15 +25,18 @@ import {ReactiveFormsModule} from "@angular/forms";
     ProjectsComponent,
     CustomersComponent,
     HomeComponent,
-    PhishingComponent
+    PhishingComponent,
+    DashboardComponent,
+    BarChartComponent,
+    GantChartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [provideCharts(withDefaultRegisterables())],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
