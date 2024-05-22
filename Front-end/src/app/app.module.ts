@@ -16,6 +16,7 @@ import { DashboardComponent } from './content/dashboard/dashboard.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { BarChartComponent } from './template/visuals/bar-chart/bar-chart.component';
 import { GantChartComponent } from './template/visuals/gant-chart/gant-chart.component';
+import { CvScannerComponent } from './content/cv-scanner/cv-scanner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { GantChartComponent } from './template/visuals/gant-chart/gant-chart.com
     DashboardComponent,
     BarChartComponent,
     GantChartComponent,
+    CvScannerComponent,
   ],
   imports: [
     BrowserModule,

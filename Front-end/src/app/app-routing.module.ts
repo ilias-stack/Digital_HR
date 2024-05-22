@@ -6,10 +6,12 @@ import { CustomersComponent } from './content/customers/customers.component';
 import { HomeComponent } from './home/home.component';
 import { PhishingComponent } from './phishing/phishing.component';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
+import { CvScannerComponent } from './content/cv-scanner/cv-scanner.component';
 
 const routes: Routes = [
   { path: 'employees', component: EmployeesComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'cv_scanner', component: CvScannerComponent },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'projects', component: ProjectsComponent },
   { path: 'customers', component: CustomersComponent },
