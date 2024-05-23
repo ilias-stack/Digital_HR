@@ -46,18 +46,17 @@ def skill_similarity_name_score(skill_name1:str, skill_name2:str):
     return similarity_score
 
 
-def skills_match_score(wanted_skills:list,actual_skills:list):
+def skills_match_score(wanted_skills: list, actual_skills: list) -> float:
     total_score = 0
-    count = 0
-
     for wanted_skill in wanted_skills:
+        max_similarity = 0
         for actual_skill in actual_skills:
             similarity = skill_similarity_name_score(wanted_skill, actual_skill)
-            total_score += similarity
-            count += 1
+            if similarity > max_similarity:
+                max_similarity = similarity
+        total_score += max_similarity
 
-    if count == 0:
+    if not wanted_skills:
         return 0
-
-    return total_score / count
     
+    return total_score / len(wanted_skills)
