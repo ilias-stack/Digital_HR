@@ -1,1 +1,85 @@
-<p>cv-scanner works!</p>
+<form id="uploadForm">
+  <div class="mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">What skills are you looking for ?</h1>
+    <label for="skills" class="block text-sm font-medium text-gray-700 mb-2"
+      >Enter skill then press enter to save:</label
+    >
+    <input
+      [(ngModel)]="newSkill"
+      (keydown.enter)="handleAddSkill()"
+      type="text"
+      id="skills"
+      name="skills"
+      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      placeholder="e.g: Python, JavaScript, Machine Learning"
+    />
+    <br />
+    <app-skills-banner></app-skills-banner>
+    <hr />
+    <label for="files" class="block text-sm font-medium text-gray-700 mt-4 mb-2"
+      >Select PDFs to scan:</label
+    >
+    <input
+      type="file"
+      id="files"
+      name="files[]"
+      multiple
+      accept=".pdf"
+      (change)="handleFileInput($event)"
+    />
+    <br />
+    <button
+      [disabled]="isLoading"
+      (click)="handleScan()"
+      type="button"
+      class="mt-4 w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    >
+      Scan
+    </button>
+    <div *ngIf="isLoading" class="flex justify-center items-center mt-4">
+      <div
+        class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"
+      ></div>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="analysisResult" class="mt-8 bg-white shadow-md rounded-md p-6">
+  <h1 class="text-2xl font-bold mb-4">The Scan results are:</h1>
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
+      <tr>
+        <th
+          scope="col"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Email
+        </th>
+        <th
+          scope="col"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Score
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let result of analysisResult | keyvalue">
+        <td class="px-6 py-4 whitespace-nowrap">{{ result.key }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="flex items-center">
+            <div class="w-full h-5 bg-gray-200 rounded-full mr-2">
+              <div
+                class="h-full bg-indigo-600 rounded-full"
+                [style.width.%]="result.value * 100"
+              ></div>
+            </div>
+            <span class="bg-indigo-600 rounded-full p-1 text-white">{{
+              result.value * 100 | number : "1.2-2"
+            }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
