@@ -13,3 +13,8 @@ whois
 gunicorn
 flask
 flask_cors
+pyresparser
+spacy==2.3.5
+nltk
+
+# After installation run post_installation.py to finish setup a drari
