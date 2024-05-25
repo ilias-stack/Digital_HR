@@ -1,1 +1,105 @@
-<p>dashboard works!</p>
+<!-- src/app/content/dashboard/dashboard.component.html -->
+<div class="dashboard p-4">
+  <h1 class="text-3xl font-bold mb-4">Dashboard</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Card for Total Customers -->
+    <div class="bg-white shadow-lg rounded-lg p-4 flex items-center">
+      <div
+        class="bg-blue-500 text-white rounded-full p-3 flex items-center justify-center w-12 h-12"
+      >
+        <!-- Custom Icon for Customers -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-person-circle"
+          viewBox="0 0 16 16"
+        >
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+          <path
+            fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+          />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-lg font-semibold text-gray-700">Total Customers</h3>
+        <p class="text-xl font-bold text-gray-500">
+          {{ counts.totalCustomers }}
+        </p>
+      </div>
+    </div>
+    <!-- Card for Total Employees -->
+    <div class="bg-white shadow-lg rounded-lg p-4 flex items-center">
+      <div
+        class="bg-green-500 text-white rounded-full p-3 flex items-center justify-center w-12 h-12"
+      >
+        <!-- Custom Icon for Employees -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 11V9a4 4 0 00-8 0v2H7a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2h-1zM9 9v2h6V9a2 2 0 10-4 0v2z"
+          />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-lg font-semibold text-gray-700">Total Employees</h3>
+        <p class="text-xl font-bold text-gray-500">
+          {{ counts.totalEmployees }}
+        </p>
+      </div>
+    </div>
+    <!-- Card for Total Projects -->
+    <div class="bg-white shadow-lg rounded-lg p-4 flex items-center">
+      <div
+        class="bg-red-500 text-white rounded-full p-3 flex items-center justify-center w-12 h-12"
+      >
+        <!-- Custom Icon for Projects -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 11c0 1.4.2 2.3 1 3h2v2a4 4 0 01-8 0v-2h2c.8-.7 1-1.6 1-3M12 4v7M16 4v7M8 4v7"
+          />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-lg font-semibold text-gray-700">Total Projects</h3>
+        <p class="text-xl font-bold text-gray-500">
+          {{ counts.totalProjects }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-wrap">
+  <app-bar-chart
+    [barChartTitle]="'salam'"
+    [barChartData]="[10, 10, 10, 11, 11, 11, 11]"
+    [barChartLabels]="['brat', 'sasas', 'brat', 'sasas', 'brat', 'sasas']"
+  ></app-bar-chart>
+  <app-bar-chart
+    [barChartTitle]="'salam'"
+    [barChartData]="[10, 10, 10, 11, 11, 11, 11]"
+    [barChartLabels]="['brat', 'sasas', 'brat', 'sasas', 'brat', 'sasas']"
+  ></app-bar-chart>
+</div>

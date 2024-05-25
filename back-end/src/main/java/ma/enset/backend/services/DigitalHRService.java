@@ -2,10 +2,9 @@ package ma.enset.backend.services;
 
 import ma.enset.backend.dtos.*;
 import ma.enset.backend.entities.Employee;
-import ma.enset.backend.entities.Project;
-import ma.enset.backend.entities.Task;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DigitalHRService {
     List<EmployeeDTO> getAllEmployee();
@@ -49,4 +48,14 @@ public interface DigitalHRService {
     void deleteCustomer(Long customerId);
 
     String scanUrl(String url);
+
+    Map<String, Long> getCounts();
+
+    List countProjectsByStatus();
+
+    List<ProjectDTO> findProjectsCloseToCurrentDate();
+
+    List findIncompleteTaskCountPerProject();
+
+    List<TaskDTO> findTasksCloseToCurrentDate();
 }

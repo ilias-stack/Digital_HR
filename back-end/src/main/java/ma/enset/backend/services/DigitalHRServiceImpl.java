@@ -1,6 +1,5 @@
 package ma.enset.backend.services;
 
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import ma.enset.backend.dtos.*;
 import ma.enset.backend.entities.Customer;
@@ -17,16 +16,13 @@ import ma.enset.backend.repositories.EmployeeRepo;
 import ma.enset.backend.repositories.ProjectRepo;
 import ma.enset.backend.repositories.TaskRepo;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -233,6 +229,42 @@ public class DigitalHRServiceImpl implements DigitalHRService{
         );
 
         return response.getBody();
+    }
+
+    @Override
+    public Map<String, Long> getCounts() {
+        Map<String, Long> counts = new HashMap<>();
+        counts.put("totalCustomers", customerRepo.count());
+        counts.put("totalEmployees", employeeRepo.count());
+        counts.put("totalProjects", projectRepo.count());
+        return counts;
+    }
+
+    @Override
+    public List<Object[]> countProjectsByStatus(){
+        return projectRepo.countProjectsByStatus();
+    }
+
+    @Override
+    public List<ProjectDTO> findProjectsCloseToCurrentDate(){
+        Date currentDate = new Date();
+
+        return projectRepo.findProjectsCloseToCurrentDate(currentDate)
+                .stream()
+                .map(project -> dtoMapper.fromProject(project)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List findIncompleteTaskCountPerProject(){
+        return taskRepo.findIncompleteTaskCountPerProject();
+    }
+
+    @Override
+    public List<TaskDTO> findTasksCloseToCurrentDate() {
+        Date currentDate = new Date();
+        return taskRepo.findTasksCloseToCurrentDate(currentDate)
+                .stream()
+                .map(task -> dtoMapper.fromTask(task)).collect(Collectors.toList());
     }
 
 }

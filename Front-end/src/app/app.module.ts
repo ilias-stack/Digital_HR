@@ -13,11 +13,12 @@ import { HomeComponent } from './home/home.component';
 import { PhishingComponent } from './phishing/phishing.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './content/dashboard/dashboard.component';
-import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { BarChartComponent } from './template/visuals/bar-chart/bar-chart.component';
 import { GantChartComponent } from './template/visuals/gant-chart/gant-chart.component';
 import { CvScannerComponent } from './content/cv-scanner/cv-scanner.component';
 import { SkillsBannerComponent } from './content/cv-scanner/skills-banner/skills-banner.component';
+import { NgChartsModule } from 'ng2-charts';
+import { TopRelevantComponent } from './template/visuals/top-relevant/top-relevant.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { SkillsBannerComponent } from './content/cv-scanner/skills-banner/skills
     GantChartComponent,
     CvScannerComponent,
     SkillsBannerComponent,
+    TopRelevantComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +42,8 @@ import { SkillsBannerComponent } from './content/cv-scanner/skills-banner/skills
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgChartsModule,
   ],
-  providers: [provideCharts(withDefaultRegisterables())],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
