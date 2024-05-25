@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 # import jwt
 
 app = Flask(__name__)
-CORS(app, support_credentials=True)
+CORS(app,)
 
 map = {
     -1:True,

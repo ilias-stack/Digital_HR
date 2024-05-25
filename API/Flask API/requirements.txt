@@ -1,3 +1,5 @@
+#? python==3.9.19
+
 numpy
 pandas
 tldextract
@@ -8,7 +10,7 @@ numpy
 pandas
 python_dateutil
 requests
-scikit_learn
+scikit-learn==1.4.1.post1
 whois
 gunicorn
 flask
@@ -17,4 +19,4 @@ pyresparser
 spacy==2.3.5
 nltk
 
-# After installation run post_installation.py to finish setup a drari
+#! After installation run post_installation.py to finish setup a drari
