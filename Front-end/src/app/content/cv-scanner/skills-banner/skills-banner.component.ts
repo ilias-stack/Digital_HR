@@ -18,7 +18,6 @@ export class SkillsBannerComponent implements OnInit {
   }
 
   removeSkill(index: number) {
-    console.log(index);
     this.skillsService.removeSkillAt(index);
   }
 }

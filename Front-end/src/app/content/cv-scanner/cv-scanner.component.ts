@@ -1,7 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { SkillsBannerComponent } from './skills-banner/skills-banner.component';
+import { Component } from '@angular/core';
 import { SkillsService } from '../../services/skills.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-cv-scanner',
