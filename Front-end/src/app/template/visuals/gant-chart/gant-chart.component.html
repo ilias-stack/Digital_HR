@@ -1,1 +1,14 @@
-<p>gant-chart works!</p>
+<div class="bg-white shadow-lg rounded-lg p-4 mt-6">
+  <h2 class="text-l font-bold mb-4">{{ barChartTitle }}</h2>
+  <div>
+    <canvas
+      baseChart
+      [type]="barChartType"
+      [datasets]="[{ data: barChartData }]"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [plugins]="barChartPlugins"
+      [data]="barChartAll"
+    ></canvas>
+  </div>
+</div>

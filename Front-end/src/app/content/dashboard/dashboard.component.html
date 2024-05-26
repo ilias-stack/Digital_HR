@@ -127,7 +127,10 @@
 </div>
 
 <app-pie-chart
+  *ngIf="employeesProjectDistribution"
   [barChartTitle]="'Number of employees per project'"
   [barChartData]="getCounts(employeesProjectDistribution)"
   [barChartLabels]="getCategories(employeesProjectDistribution)"
 ></app-pie-chart>
+
+<app-gant-chart></app-gant-chart>

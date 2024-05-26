@@ -21,4 +21,7 @@ public interface TaskRepo extends JpaRepository<Task,Long> {
 
     @Query("SELECT t FROM Task t WHERE t.EndDate >= :currentDate AND t.taskProgress <> 'COMPLETED' ORDER BY t.EndDate ASC LIMIT 3")
     List<Task> findTasksCloseToCurrentDate(@Param("currentDate") Date currentDate);
+
+    @Query("SELECT t FROM Task t WHERE t.taskProgress <> 'COMPLETED' AND t.EndDate > CURRENT_TIMESTAMP ORDER BY t.startDate ASC")
+    List<Task> findPendingTasksOrderedByStartDate();
 }

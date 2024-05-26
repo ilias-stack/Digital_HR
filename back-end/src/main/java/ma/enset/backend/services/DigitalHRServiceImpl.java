@@ -271,4 +271,14 @@ public class DigitalHRServiceImpl implements DigitalHRService{
     public List findEmployeeCountPerProject(){
         return projectRepo.findEmployeeCountPerProject();
     }
+
+    @Override
+    public List<TaskDTO> findPendingTasksOrderedByStartDate(){
+        return taskRepo.findPendingTasksOrderedByStartDate()
+                .stream().map(
+                        task -> dtoMapper.fromTask(task)
+                ).collect(Collectors.toList());
+    }
+
+
 }

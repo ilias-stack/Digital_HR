@@ -60,4 +60,6 @@ public interface DigitalHRService {
     List<TaskDTO> findTasksCloseToCurrentDate();
 
     List findEmployeeCountPerProject();
+
+    List<TaskDTO> findPendingTasksOrderedByStartDate();
 }

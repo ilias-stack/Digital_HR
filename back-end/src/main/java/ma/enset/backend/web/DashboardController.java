@@ -49,4 +49,9 @@ public class DashboardController {
         return digitalHRService.findEmployeeCountPerProject();
     }
 
+    @GetMapping("/findPendingTasksOrderedByStartDate")
+    public List<TaskDTO> findPendingTasksOrderedByStartDate() {
+        return digitalHRService.findPendingTasksOrderedByStartDate();
+    }
+
 }
