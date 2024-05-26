@@ -44,8 +44,9 @@ public class DashboardController {
         return digitalHRService.findTasksCloseToCurrentDate();
     }
 
-
-
-
+    @GetMapping("/findEmployeeCountPerProject")
+    public List findEmployeeCountPerProject() {
+        return digitalHRService.findEmployeeCountPerProject();
+    }
 
 }

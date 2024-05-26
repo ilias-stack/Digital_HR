@@ -58,4 +58,6 @@ public interface DigitalHRService {
     List findIncompleteTaskCountPerProject();
 
     List<TaskDTO> findTasksCloseToCurrentDate();
+
+    List findEmployeeCountPerProject();
 }
