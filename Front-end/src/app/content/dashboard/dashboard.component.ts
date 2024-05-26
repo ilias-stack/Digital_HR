@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit {
   tasksGraphData!: [string, number][];
   taskRelevantList!: RelevancyItem[];
 
+  employeesProjectDistribution!: [string, number][];
+
   getCategories(data: [string, number][]) {
     return data.map((item) => item[0]);
   }
@@ -74,6 +76,10 @@ export class DashboardComponent implements OnInit {
         });
       });
       this.projectRelevantList = projectsList;
+    });
+
+    this.dashboardService.getEmployeeCountPerProject().subscribe((data) => {
+      this.employeesProjectDistribution = data;
     });
   }
 }

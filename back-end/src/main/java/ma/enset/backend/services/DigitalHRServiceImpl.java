@@ -267,4 +267,8 @@ public class DigitalHRServiceImpl implements DigitalHRService{
                 .map(task -> dtoMapper.fromTask(task)).collect(Collectors.toList());
     }
 
+    @Override
+    public List findEmployeeCountPerProject(){
+        return projectRepo.findEmployeeCountPerProject();
+    }
 }

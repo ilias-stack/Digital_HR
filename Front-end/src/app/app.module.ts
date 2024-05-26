@@ -19,6 +19,7 @@ import { CvScannerComponent } from './content/cv-scanner/cv-scanner.component';
 import { SkillsBannerComponent } from './content/cv-scanner/skills-banner/skills-banner.component';
 import { NgChartsModule } from 'ng2-charts';
 import { TopRelevantComponent } from './template/visuals/top-relevant/top-relevant.component';
+import { PieChartComponent } from './template/visuals/pie-chart/pie-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { TopRelevantComponent } from './template/visuals/top-relevant/top-releva
     CvScannerComponent,
     SkillsBannerComponent,
     TopRelevantComponent,
+    PieChartComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,4 +33,10 @@ export class DashboardService {
   getCloseDueTasks(): Observable<any> {
     return this.http.get<any>(this.apiUrl + '/findTasksCloseToCurrentDate');
   }
+
+  getEmployeeCountPerProject(): Observable<[string, number][]> {
+    return this.http.get<[string, number][]>(
+      this.apiUrl + '/findEmployeeCountPerProject'
+    );
+  }
 }

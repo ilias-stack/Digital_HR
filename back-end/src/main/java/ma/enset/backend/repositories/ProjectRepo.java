@@ -24,4 +24,7 @@ public interface ProjectRepo extends JpaRepository<Project,Long> {
 
  @Query("SELECT p FROM Project p WHERE p.endDate >= :currentDate ORDER BY p.endDate ASC LIMIT 3")
  List<Project> findProjectsCloseToCurrentDate(@Param("currentDate") Date currentDate);
+
+ @Query("SELECT p.title, COUNT(e) FROM Project p JOIN p.employees e GROUP BY p.title")
+ List<Object[]> findEmployeeCountPerProject();
 }
