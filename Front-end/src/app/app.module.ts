@@ -19,6 +19,8 @@ import { CvScannerComponent } from './content/cv-scanner/cv-scanner.component';
 import { SkillsBannerComponent } from './content/cv-scanner/skills-banner/skills-banner.component';
 import { NgChartsModule } from 'ng2-charts';
 import { TopRelevantComponent } from './template/visuals/top-relevant/top-relevant.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,8 @@ import { TopRelevantComponent } from './template/visuals/top-relevant/top-releva
     CvScannerComponent,
     SkillsBannerComponent,
     TopRelevantComponent,
+    AdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
