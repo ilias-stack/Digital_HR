@@ -13,4 +13,24 @@ export class DashboardService {
   getCounts(): Observable<any> {
     return this.http.get<any>(this.apiUrl + '/counts');
   }
+
+  getCountProjectsByStatus(): Observable<[string, number][]> {
+    return this.http.get<[string, number][]>(
+      this.apiUrl + '/countProjectsByStatus'
+    );
+  }
+
+  getCloseDueProjects(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/findProjectsCloseToCurrentDate');
+  }
+
+  getIncompleteTaskCountPerProject(): Observable<[string, number][]> {
+    return this.http.get<[string, number][]>(
+      this.apiUrl + '/findIncompleteTaskCountPerProject'
+    );
+  }
+
+  getCloseDueTasks(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/findTasksCloseToCurrentDate');
+  }
 }

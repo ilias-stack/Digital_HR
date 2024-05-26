@@ -1,1 +1,12 @@
-<p>top-relevant works!</p>
+<div class="bg-white shadow-lg rounded-lg p-4 mt-6">
+  <h2 class="text-l font-bold mb-4">{{ title }}</h2>
+  <ul>
+    <li *ngFor="let item of items" class="mb-4 p-4 border rounded-lg">
+      <h3 class="font-semibold">{{ item.title }}</h3>
+      <span class="text-sm">{{ item.status }}</span>
+      <p class="text-sm text-gray-600">
+        {{ calculateRemainingTime(item.endDate) }}
+      </p>
+    </li>
+  </ul>
+</div>
