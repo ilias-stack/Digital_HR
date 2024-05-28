@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,12 +9,27 @@ import {Router} from "@angular/router";
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
-  constructor(private router:Router) { }
-
+  formLogin! : FormGroup;
+  constructor(private fb : FormBuilder,private authService:AuthService,private router:Router ) {
+  }
   ngOnInit(): void {
+    this.formLogin = this.fb.group({
+      username : this.fb.control(""),
+      password : this.fb.control("")
+    })
   }
 
-  handleSubmit() {
-    this.router.navigateByUrl('/admin/dashboard')
+  handleLogin() {
+    let username = this.formLogin.value.username;
+    let pwd = this.formLogin.value.password
+    this.authService.login(username,pwd).subscribe({
+      next:data=>{
+        this.authService.loadProfile(data)
+        this.router.navigateByUrl("/admin/dashboard")
+      },
+      error : err => {
+        console.log(err)
+      }
+    })
   }
 }

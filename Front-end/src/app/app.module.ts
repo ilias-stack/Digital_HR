@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { EmployeesComponent } from './content/employees/employees.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { ProjectsComponent } from './content/projects/projects.component';
 import { CustomersComponent } from './content/customers/customers.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +21,8 @@ import { NgChartsModule } from 'ng2-charts';
 import { TopRelevantComponent } from './template/visuals/top-relevant/top-relevant.component';
 import {PieChartComponent} from "./template/visuals/pie-chart/pie-chart.component";
 import {AdminComponent} from "./admin/admin.component";
+import {LoginComponent} from "./login/login.component";
+import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,7 @@ import {AdminComponent} from "./admin/admin.component";
     TopRelevantComponent,
     PieChartComponent,
     AdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,9 @@ import {AdminComponent} from "./admin/admin.component";
     ReactiveFormsModule,
     FormsModule,
     NgChartsModule,
+  ],
+  providers: [
+    {provide :HTTP_INTERCEPTORS,useClass : AppHttpInterceptor,multi:true}
   ],
   bootstrap: [AppComponent],
 })
