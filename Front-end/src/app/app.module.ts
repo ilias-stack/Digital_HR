@@ -23,6 +23,7 @@ import {PieChartComponent} from "./template/visuals/pie-chart/pie-chart.componen
 import {AdminComponent} from "./admin/admin.component";
 import {LoginComponent} from "./login/login.component";
 import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
+import { AddProjectComponent } from './content/add-project/add-project.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
     PieChartComponent,
     AdminComponent,
     LoginComponent,
+    AddProjectComponent,
   ],
   imports: [
     BrowserModule,
