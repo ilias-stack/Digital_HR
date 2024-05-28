@@ -10,7 +10,7 @@ import {PhishingModel} from "../models/phishing.model";
 })
 export class PhishingComponent implements OnInit{
   formGroup!: FormGroup;
-  isSpam!:boolean;
+  isSpam!:any;
   constructor(private fb:FormBuilder,private phishingService:PhishingService) {
   }
   ngOnInit(): void {

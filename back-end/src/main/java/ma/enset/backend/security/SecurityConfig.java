@@ -67,17 +67,7 @@ public class SecurityConfig {
                 .oauth2ResourceServer(oa->oa.jwt(Customizer.withDefaults()))
                 .build();
     }
-    @Bean
-    CorsConfigurationSource corsConfigurationSource(){
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("*");
-        configuration.addAllowedHeader("*");
-        configuration.setExposedHeaders(List.of("x-auth-token"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",configuration);
-        return source;
-    }
+
     @Bean
     JwtEncoder jwtEncoder(){
         //String secretKey="b9f937835dfb8f503cf317d4593f58a403f2d87fbcd403fdb1209819bf781b98";

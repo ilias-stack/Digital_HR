@@ -18,7 +18,7 @@ export class AuthService {
       headers : new HttpHeaders().set("content-Type","application/x-www-form-urlencoded")
     }
     let params = new HttpParams().set("username",username).set("password",password)
-    return this.http.post("http://localhost:8080/auth/login",params,options)
+    return this.http.post("http://localhost:8085/auth/login",params,options)
   }
 
   loadProfile(data: any) {
