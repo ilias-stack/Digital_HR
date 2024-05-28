@@ -22,7 +22,7 @@ export class PhishingComponent implements OnInit{
   handleScanUrl() {
     this.phishingService.scanUrl(this.formGroup.value.url).subscribe({
       next : (value:PhishingModel) => {
-        console.log(value.spam);
+        this.isSpam=value.spam
       },
       error : err => {
         console.log(err);
