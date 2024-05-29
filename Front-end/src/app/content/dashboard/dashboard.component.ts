@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { RelevancyItem } from '../../models/relevancy.model';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +22,10 @@ export class DashboardComponent implements OnInit {
   taskRelevantList!: RelevancyItem[];
 
   employeesProjectDistribution!: [string, number][];
+
+  ganttData: Task[] | undefined;
+  ganttLabels: string[] | undefined;
+  ganttDateRanges: [number, number][] | undefined;
 
   getCategories(data: [string, number][]) {
     return data.map((item) => item[0]);
@@ -80,6 +85,20 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.getEmployeeCountPerProject().subscribe((data) => {
       this.employeesProjectDistribution = data;
+    });
+
+    this.dashboardService.getGanttData().subscribe((data) => {
+      this.ganttData = data;
+      this.ganttLabels = [];
+      this.ganttDateRanges = [];
+      this.ganttData.forEach((task) => {
+        this.ganttLabels?.push(task.description);
+
+        const startDate = new Date(task.startDate).getTime();
+        const endDate = new Date(task.endDate).getTime();
+
+        this.ganttDateRanges?.push([startDate, endDate]);
+      });
     });
   }
 }

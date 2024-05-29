@@ -133,4 +133,9 @@
   [barChartLabels]="getCategories(employeesProjectDistribution)"
 ></app-pie-chart>
 
-<app-gant-chart></app-gant-chart>
+<app-gant-chart
+  *ngIf="ganttData"
+  [barChartTitle]="'Tasks distribution'"
+  [barChartData]="ganttDateRanges!"
+  [barChartLabels]="ganttLabels!"
+></app-gant-chart>

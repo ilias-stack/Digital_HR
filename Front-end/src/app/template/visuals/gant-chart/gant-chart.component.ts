@@ -1,31 +1,31 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   Chart,
   ChartData,
   ChartOptions,
   ChartType,
+  plugins,
   registerables,
 } from 'chart.js';
 import 'chartjs-adapter-moment';
-import { sample } from 'rxjs';
-import { GantTaskModel } from './task.model';
 
 @Component({
   selector: 'app-gant-chart',
   templateUrl: './gant-chart.component.html',
-  styleUrl: './gant-chart.component.css',
+  styleUrls: ['./gant-chart.component.css'],
 })
 export class GantChartComponent implements OnInit {
   @Input() barChartLabels!: string[];
-  @Input() barChartData!: number[];
+  @Input() barChartData!: [number, number][];
   @Input() barChartTitle!: string;
 
-  public barChartAll: ChartData<'line'> = {
-    labels: ['a', 's', 'f', '2', 'a', 's', 'f', '2'],
+  public barChartAll: ChartData<'bar'> = {
+    labels: [],
     datasets: [
       {
-        label: '',
-        data: [10, 20, 30, 10, 10, 20, 30, 10],
+        data: [],
+        borderRadius: 6,
+        borderSkipped: false,
         backgroundColor: [
           '#EF4444',
           '#4F46E5',
@@ -42,18 +42,19 @@ export class GantChartComponent implements OnInit {
     ],
   };
 
-  sampleData: GantTaskModel[] = [
-    { label: 'Task 1', start: '2022-02-01', end: '2022-02-03' },
-    { label: 'Task 2', start: '2022-02-04', end: '2022-02-06' },
-    { label: 'Task 3', start: '2022-02-07', end: '2022-02-10' },
-  ];
+  todayDate = new Date();
 
-  public barChartOptions: ChartOptions = {
+  public barChartOptions: ChartOptions<'bar'> = {
     indexAxis: 'y',
     responsive: true,
     scales: {
       x: {
         type: 'time',
+        min: new Date(
+          this.todayDate.getFullYear() - 1,
+          this.todayDate.getMonth(),
+          this.todayDate.getDate()
+        ).getTime(),
         time: {
           unit: 'day',
         },
@@ -75,15 +76,8 @@ export class GantChartComponent implements OnInit {
   public barChartPlugins = [];
 
   ngOnInit() {
-    const datasetData = this.sampleData.map((task) => [
-      { x: new Date(task.start).getTime(), y: task.label },
-      { x: new Date(task.end).getTime(), y: task.label },
-    ]);
-    this.barChartAll.datasets[0].data = datasetData.flat().map((itemi) => {
-      return itemi.x;
-    });
-    this.barChartAll.labels = datasetData.flat().map((itemi) => {
-      return itemi.y;
-    });
+    this.barChartAll.labels = this.barChartLabels;
+    this.barChartAll.datasets[0].data = this.barChartData;
+    this.barChartAll.datasets[0].label = this.barChartTitle;
   }
 }
