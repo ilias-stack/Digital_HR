@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { EmployeesComponent } from './content/employees/employees.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { ProjectsComponent } from './content/projects/projects.component';
 import { CustomersComponent } from './content/customers/customers.component';
 import { HomeComponent } from './home/home.component';
@@ -19,9 +19,11 @@ import { CvScannerComponent } from './content/cv-scanner/cv-scanner.component';
 import { SkillsBannerComponent } from './content/cv-scanner/skills-banner/skills-banner.component';
 import { NgChartsModule } from 'ng2-charts';
 import { TopRelevantComponent } from './template/visuals/top-relevant/top-relevant.component';
-import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/login.component';
-import { PieChartComponent } from './template/visuals/pie-chart/pie-chart.component';
+import {PieChartComponent} from "./template/visuals/pie-chart/pie-chart.component";
+import {AdminComponent} from "./admin/admin.component";
+import {LoginComponent} from "./login/login.component";
+import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
+import { AddProjectComponent } from './content/add-project/add-project.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +40,10 @@ import { PieChartComponent } from './template/visuals/pie-chart/pie-chart.compon
     CvScannerComponent,
     SkillsBannerComponent,
     TopRelevantComponent,
-    AdminComponent,
     PieChartComponent,
+    AdminComponent,
     LoginComponent,
+    AddProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,9 @@ import { PieChartComponent } from './template/visuals/pie-chart/pie-chart.compon
     ReactiveFormsModule,
     FormsModule,
     NgChartsModule,
+  ],
+  providers: [
+    {provide :HTTP_INTERCEPTORS,useClass : AppHttpInterceptor,multi:true}
   ],
   bootstrap: [AppComponent],
 })
