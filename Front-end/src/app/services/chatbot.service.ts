@@ -13,6 +13,9 @@ export class ChatbotService {
   constructor(private http: HttpClient) { }
 
   getResponse(query: string): Observable<string> {
-    return this.http.get<string>(this.apiUrl +"query="+encodeURIComponent(query), { responseType: 'text' as 'json' });
+    return this.http.get<string>(this.apiUrl +"?query="+encodeURIComponent(query), { responseType: 'text' as 'json' });
+  }
+  postFile(formData: FormData) {
+    return this.http.post<any>(this.apiUrl + "/addPDF", formData);
   }
 }

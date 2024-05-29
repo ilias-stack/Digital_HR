@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { ChatbotService } from "../../services/chatbot.service";
 
 interface Message {
@@ -12,7 +12,12 @@ interface Message {
   styleUrls: ['./chatbot.component.css'] // Correction ici
 })
 export class ChatbotComponent implements OnInit{
-
+  attachedFile: File | null = null;
+  loadingAnswer = false;
+  loadingFile = false;
+  message = "";
+  assistant = "assistant";
+  inputSelectedFiles: File[] = [];
   messages: Message[] = [];
   newMessage: string = '';
   response: string = 'Bonjour, je suis votre assistant virtuel. Je suis là pour répondre à vos questions et vous aider dans vos tâches. \n' +
@@ -45,16 +50,19 @@ export class ChatbotComponent implements OnInit{
 
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      // Faire quelque chose avec le fichier sélectionné, comme l'envoyer au backend
-      console.log('Fichier sélectionné :', file);
-    }
-  }
 
-  uploadFile() {
 
+  async attachFile(event: any) {
+    this.loadingFile = true;
+
+    if (!event.target.files) return;
+    const files = event.target.files;
+    // Store the selected files
+    this.inputSelectedFiles.push(...files);
+    // send request
+    const formData = new FormData();
+    formData.append("file", this.inputSelectedFiles[0]);
+    this.chatbotService.postFile(formData).subscribe();
+    this.loadingFile = false;
   }
 }
