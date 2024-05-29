@@ -24,6 +24,7 @@ import {AdminComponent} from "./admin/admin.component";
 import {LoginComponent} from "./login/login.component";
 import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
 import { AddProjectComponent } from './content/add-project/add-project.component';
+import { ChatbotComponent } from './content/chatbot/chatbot.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { AddProjectComponent } from './content/add-project/add-project.component
     AdminComponent,
     LoginComponent,
     AddProjectComponent,
+    ChatbotComponent,
   ],
   imports: [
     BrowserModule,

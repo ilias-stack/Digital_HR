@@ -10,6 +10,7 @@ import { CvScannerComponent } from './content/cv-scanner/cv-scanner.component';
 import {AdminComponent} from "./admin/admin.component";
 import {LoginComponent} from "./login/login.component";
 import {AddProjectComponent} from "./content/add-project/add-project.component";
+import {ChatbotComponent} from "./content/chatbot/chatbot.component";
 
 const routes: Routes = [
   {path :"admin", component : AdminComponent, children:[
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'customers', component: CustomersComponent },
       { path: 'phishing', component: PhishingComponent },
       {path:"addProject",component:AddProjectComponent},
+      {path:"chatBot",component:ChatbotComponent}
     ]},
   { path: 'home', component: HomeComponent },
   {path:"",redirectTo:"home",pathMatch:"full"},
