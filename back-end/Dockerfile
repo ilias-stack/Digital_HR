@@ -1,30 +1,26 @@
-# Use an official Maven image to build the application
-FROM maven:3.8.6-openjdk-17-slim AS builder
+# Use the official OpenJDK 17 image as a base image
+FROM openjdk:17-slim
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the pom.xml and download the dependencies
+# Install Maven
+RUN apt-get update && apt-get install -y maven && apt-get clean
+
+# Copy the Maven wrapper files and the pom.xml to the container
 COPY pom.xml .
+
+# Download dependencies (to cache Maven dependencies layer)
 RUN mvn dependency:go-offline
 
-# Copy the source code into the container
+# Copy the entire source code to the container
 COPY src ./src
 
-# Package the application into a jar file
+# Build the Spring Boot application
 RUN mvn clean package -DskipTests
 
-# Use an OpenJDK image for running the application
-FROM openjdk:17-oracle
+# Add a sleep to give MySQL time to start
+CMD ["sh", "-c", "sleep 30 && java -jar target/back-end-0.0.1-SNAPSHOT.jar"]
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the jar file from the builder stage into the container
-COPY --from=builder /app/target/*.jar app.jar
-
-# Expose the port the application will run on
+# Expose the application port
 EXPOSE 8085
-
-# Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "app.jar"]

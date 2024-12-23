@@ -1,27 +1,58 @@
-version: '3.8'
+version: "3.8"
 
 services:
+  angular-frontend:
+    restart: always
+    build:
+      context: ./Front-end
+    ports:
+      - "80:4200"
+    networks:
+      - digital_hr_network
+    command: npm run start
+    depends_on:
+      - spring-boot-app
+      - mysql
+
   spring-boot-app:
+    restart: always
     build: ./back-end
     ports:
       - "8085:8085"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/digital-hr
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=your_password
+      - SPRING_DATASOURCE_PASSWORD=my_password
       - JWT_SECRET=b9f937835dfb8f503cf317d4593f58a403f2d87fbcd403fdb1209819bf781b98
     depends_on:
       - mysql
+    networks:
+      - digital_hr_network
+
+  flask-api:
+    restart: always
+    build: ./AI API
+    ports:
+      - "5000:5000"
+    networks:
+      - digital_hr_network
 
   mysql:
+    restart: always
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_ROOT_PASSWORD: my_password
       MYSQL_DATABASE: digital-hr
     ports:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - digital_hr_network
 
 volumes:
   mysql-data:
+
+networks:
+  digital_hr_network:
+    driver: bridge

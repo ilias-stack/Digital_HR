@@ -7,7 +7,7 @@ import { Task } from '../models/task.model';
   providedIn: 'root',
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:8085/dashboard';
+  private apiUrl = 'http://spring-boot-app:8085/dashboard';
 
   constructor(private http: HttpClient) {}
 

@@ -6,15 +6,13 @@ import {Employee} from "../models/employee.model";
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeesService {
+  backendHost: string = 'http://spring-boot-app:8085';
+  constructor(private http: HttpClient) {}
 
-  backendHost:string="http://localhost:8085"
-  constructor(private  http:HttpClient) { }
-
-  public getEmployees():Observable<Array<Employee>>{
-    return this.http.get<Array<Employee>>(this.backendHost+"/employees");
+  public getEmployees(): Observable<Array<Employee>> {
+    return this.http.get<Array<Employee>>(this.backendHost + '/employees');
   }
-
 }

@@ -10,7 +10,7 @@ export class CvScannerComponent {
   newSkill: string = '';
   files!: FileList;
   isLoading = false;
-  API_URL = 'http://localhost:5000';
+  API_URL = 'http://flask-api:5000';
 
   analysisResult: { [key: string]: number } | undefined;
 

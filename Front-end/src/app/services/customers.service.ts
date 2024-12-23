@@ -5,14 +5,13 @@ import {Employee} from "../models/employee.model";
 import {Customer} from "../models/customer.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomersService {
+  backendHost: string = 'http://spring-boot-app:8085';
+  constructor(private http: HttpClient) {}
 
-  backendHost:string="http://localhost:8085"
-  constructor(private  http:HttpClient) { }
-
-  public getCustomers():Observable<Array<Customer>>{
-    return this.http.get<Array<Customer>>(this.backendHost+"/customers");
+  public getCustomers(): Observable<Array<Customer>> {
+    return this.http.get<Array<Customer>>(this.backendHost + '/customers');
   }
 }

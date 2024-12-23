@@ -10,6 +10,8 @@ export class PhishingService {
   constructor(private http : HttpClient) { }
 
   scanUrl(value:string) {
-    return this.http.get<PhishingModel>("http://localhost:8085/phishing?url="+value);
+    return this.http.get<PhishingModel>(
+      'http://spring-boot-app:8085/phishing?url=' + value
+    );
   }
 }
